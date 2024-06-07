@@ -85,6 +85,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "phpcs": "phpcs",
         "phpstan": "phpstan analyse",
         "phpmd": "phpmd src text phpmd.xml"
     },
