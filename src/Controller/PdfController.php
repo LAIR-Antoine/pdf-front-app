@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\GotenbergService;
+use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,20 +10,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class PdfController extends AbstractController
 {
-    private GotenbergService $gotenbergService;
+    private PdfService $pdfService;
 
-    public function __construct(GotenbergService $gotenbergService)
+    public function __construct(PdfService $pdfService)
     {
-        $this->gotenbergService = $gotenbergService;
+        $this->pdfService = $pdfService;
     }
 
-    #[Route('/generate-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
+    #[Route('/generate-example-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
     public function generatePdf(): Response
     {
         $url = 'https://sparksuite.github.io/simple-html-invoice-template/';
 
         try {
-            $pdfContent = $this->gotenbergService->generatePdf($url);
+            $pdfContent = $this->pdfService->generatePdf($url);
             return new Response($pdfContent, 200, [
                 'Content-Type' => 'application/pdf',
             ]);
