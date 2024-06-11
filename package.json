@@ -10,7 +10,7 @@
     "webpack-notifier": "^1.15.0"
   },
   "scripts": {
-    "dev": "encore dev",
+    "dev": "encore dev --watch",
     "build": "encore production"
   }
 }
