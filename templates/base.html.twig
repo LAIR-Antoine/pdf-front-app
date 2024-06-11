@@ -159,6 +159,7 @@
                 </span>
               </label>
               <div class="hidden sm:flex">
+              {% if not app.user %}
                 <a
                   href="/login"
                   class="loginBtn px-[22px] py-2 text-base font-medium text-white hover:opacity-70"
@@ -171,6 +172,20 @@
                 >
                   S'inscrire
                 </a>
+              {% else %}
+                <a
+                  href="/logout"
+                  class="loginBtn px-[22px] py-2 text-base font-medium text-white hover:opacity-70"
+                >
+                  Se déconnecter
+                </a>
+                <a
+                  href="/profile"
+                  class="signUpBtn rounded-md bg-white bg-opacity-20 px-6 py-2 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
+                >
+                  Profil
+                </a>
+              {% endif %}
               </div>
             </div>
           </div>
