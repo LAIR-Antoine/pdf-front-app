@@ -17,7 +17,7 @@ class PdfController extends AbstractController
         $this->pdfService = $pdfService;
     }
 
-    #[Route('/generate-example-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
+    #[Route('/generate-example-pdf', name: 'generate_example_pdf', methods: ['GET', 'POST'])]
     public function generatePdf(): Response
     {
         $url = 'https://sparksuite.github.io/simple-html-invoice-template/';
@@ -30,5 +30,13 @@ class PdfController extends AbstractController
         } catch (\Exception $e) {
             return new Response('Error: ' . $e->getMessage(), 500);
         }
+    }
+
+    #[Route('/generate-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
+    public function generate(): Response
+    {
+        return $this->render('pdf/generate.html.twig', [
+            'controller_name' => 'PdfController',
+        ]);
     }
 }
