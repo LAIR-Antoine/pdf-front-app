@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Subscription;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -83,6 +84,10 @@ class SecurityController extends AbstractController
                     'success',
                     'Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter.'
                 );
+
+                $freeSubscription = $manager->getRepository(Subscription::class)->findOneBy(['title' => 'Gratuit']);
+
+                $user->setSubscription($freeSubscription);
 
                 $manager->persist($user);
                 $manager->flush();
