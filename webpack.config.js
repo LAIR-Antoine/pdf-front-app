@@ -53,7 +53,7 @@ Encore
         config.corejs = '3.23';
     })
 
-    .addStyleEntry('app', './assets/styles/app.css')
+    .addStyleEntry('main', './assets/styles/app.css')
     .enablePostCssLoader((options) => {
       options.postcssOptions = {
         plugins: {
