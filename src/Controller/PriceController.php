@@ -18,8 +18,12 @@ class PriceController extends AbstractController
         $user = $this->getUser();
         $subscription = $user->getSubscription();
 
-        $subscriptionId = $subscription->getId();
-
+        if (!$subscription) {
+            $subscriptionId = 0;
+        } else {
+            $subscriptionId = $subscription->getId();
+        }
+        
         return $this->render('price/index.html.twig', [
             'controller_name' => 'PriceController',
             'subscription' => $subscriptionId,
@@ -39,11 +43,19 @@ class PriceController extends AbstractController
         $user = $this->getUser();
         $subscription = $user->getSubscription();
 
-        $newSubscription = $manager->getRepository(Subscription::class)->findOneBy(['id' => $offerId]);
-        $user->setSubscription($newSubscription);
-        $user->setSubscriptionEndAt(new \DateTimeImmutable('+1 month'));
-        $manager->persist($user);
-        $manager->flush();
+        if ($offerId == 0) {
+            $user->setSubscription(null);
+            $user->setSubscriptionEndAt(null);
+            $manager->persist($user);
+            $manager->flush();
+        } else {
+            $newSubscription = $manager->getRepository(Subscription::class)->findOneBy(['id' => $offerId]);
+            $user->setSubscription($newSubscription);
+            $user->setSubscriptionEndAt(new \DateTimeImmutable('+1 month'));
+            $manager->persist($user);
+            $manager->flush();
+        }
+        
 
         return $this->redirectToRoute('app_price');
 

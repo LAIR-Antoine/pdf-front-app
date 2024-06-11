@@ -16,11 +16,13 @@ class ProfileController extends AbstractController
         }
         
         $user = $this->getUser();
+        $subscription = $user->getSubscription();
 
 
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
-            'user' => $user
+            'user' => $user,
+            'subscription' => $subscription,
         ]);
     }
 }

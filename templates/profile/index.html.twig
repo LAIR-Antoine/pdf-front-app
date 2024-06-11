@@ -33,6 +33,26 @@
                         <div class="mb-[22px]">
                             <p class="text-lg">{{ user.firstname }} {{ user.lastname }}</p>
                             <p class="text-lg">{{ user.email }}</p>
+                            <br>
+
+                            {% if subscription %}
+                                <p class="text-lg">Abonnement actif :</p>
+                                <p class="text-lg">{{ subscription.title }} | {{ subscription.price }} €</p>
+                                <p class="text-lg">{{ subscription.description }}</p>
+                                <br>
+                                <a href={{ path('app_change_offer', { 'offer_id': 0 }) }}
+                                  class="inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
+                                  Annuler l'abonnement
+                                </a>
+                            {% else %}
+                                <p class="text-lg">Pas d'abonnement actif</p>
+
+                                <br>
+                                <a href={{ path('app_price') }}
+                                  class="inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
+                                  Voir les offres
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
