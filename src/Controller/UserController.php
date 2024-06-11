@@ -16,7 +16,7 @@ class UserController extends AbstractController
         ]);
     } */
 
-    #[Route('/signup', name: 'app_signup')]
+   /*  #[Route('/signup', name: 'app_signup')]
     public function signup(): Response
     {
         return $this->render('user/signup.html.twig', [
@@ -30,7 +30,7 @@ class UserController extends AbstractController
         return $this->render('user/signin.html.twig', [
             'controller_name' => 'UserController',
         ]);
-    }
+    } */
 
     
 }

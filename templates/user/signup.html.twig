@@ -29,28 +29,48 @@
           <div
             class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-xl shadow-form bg-white dark:bg-dark-2 py-14 px-8 text-center sm:px-12 md:px-[60px]"
             data-wow-delay=".15s">
-            <form>
-              <div class="mb-[22px]">
-                <input type="text" placeholder="Nom"
-                  class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
+
+            {% for message in app.flashes('success') %}
+                <div class="bg-green-400 p-5 rounded-md mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="bg-red-400 p-5 rounded-md mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+
+              <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div class="space-y-6">
+                  {{ form_start(form) }}
+                  <div class="mb-[22px]">
+                      {{ form_row(form.firstname, {'attr': {'class': 'w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none'}}) }}
+                    </div>
+                    <div class="mb-[22px]">
+                      {{ form_row(form.lastname, {'attr': {'class': 'w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none'}}) }}
+                    </div>
+                  <div class="mb-[22px]">
+                    {{ form_row(form.email, {'attr': {'class': 'w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none'}}) }}
+                  </div>
+                  <div class="mb-[22px]">
+                      {{ form_row(form.plainPassword.first, {'attr': {'class': 'w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none'}}) }}
+                    </div>
+                    <div class="mb-[22px]">
+                      {{ form_row(form.plainPassword.second, {'attr': {'class': 'w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none'}}) }}
+                    </div>
+                 
+                  <div class="mt-2 hover:scale-105 transition-all duration-200 ease mb-9">
+                    {{ form_row(form.submit, {'attr': {'class': 'w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:bg-blue-dark'}}) }}
+                  </div>
+                  {{ form_end(form) }}
+                </div>
               </div>
-              <div class="mb-[22px]">
-                <input type="email" placeholder="Email"
-                  class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
-              </div>
-              <div class="mb-[22px]">
-                <input type="password" placeholder="Mot de passe"
-                  class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
-              </div>
-              <div class="mb-9">
-                <input type="submit" value="S'inscrire"
-                  class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:bg-blue-dark" />
-              </div>
-            </form>
 
             <p class="text-base text-body-secondary">
               Vous avez déjà un compte ?
-              <a href="/signin" class="text-primary hover:underline">
+              <a href="/login" class="text-primary hover:underline">
                 Se connecter
               </a>
             </p>

@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | Générateur de PDF</title>
-    <link rel="stylesheet" href="{{ asset('build/ .css') }}">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
 
     <link
       rel="shortcut icon"
-      href="assets/images/favicon.png"
+      href="../assets/images/favicon.png"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../assets/css/animate.css" />
+    <link rel="stylesheet" href="../assets/css/tailwind.css" />
 
     <!-- ==== WOW JS ==== -->
-    <script src="assets/js/wow.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
     <script>
       new WOW().init();
     </script>
@@ -31,7 +31,7 @@
           <div class="w-20 px-4">
             <a href="/" class="navbar-logo block w-full py-5">
               <img
-                src="assets/images/logo/logo.svg"
+                src="../assets/images/logo/logo.svg"
                 alt="logo"
                 class="header-logo w-full"
               />
@@ -66,6 +66,16 @@
                       Accueil
                     </a>
                   </li>
+                  
+                  <li class="group relative">
+                    <a
+                      href="/pricing"
+                      class="ud-menu-scroll mx-8 flex py-2 text-base font-medium text-dark group-hover:text-primary dark:text-white lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-10"
+                    >
+                      Nos offres
+                    </a>
+                  </li>
+                  {% if app.user %}
                   <li class="group relative">
                     <a
                       href="/generate-pdf"
@@ -74,14 +84,7 @@
                       Générer un PDF
                     </a>
                   </li>
-                  <li class="group relative">
-                    <a
-                      href="/pricing"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base font-medium text-dark group-hover:text-primary dark:text-white lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-10"
-                    >
-                      Tarifs
-                    </a>
-                  </li>
+                  {% endif %}
                 </ul>
               </nav>
             </div>
@@ -159,8 +162,9 @@
                 </span>
               </label>
               <div class="hidden sm:flex">
+              {% if not app.user %}
                 <a
-                  href="/signin"
+                  href="/login"
                   class="loginBtn px-[22px] py-2 text-base font-medium text-white hover:opacity-70"
                 >
                   Se connecter
@@ -171,6 +175,20 @@
                 >
                   S'inscrire
                 </a>
+              {% else %}
+                <a
+                  href="/logout"
+                  class="loginBtn px-[22px] py-2 text-base font-medium text-white hover:opacity-70"
+                >
+                  Se déconnecter
+                </a>
+                <a
+                  href="/profile"
+                  class="signUpBtn rounded-md bg-white bg-opacity-20 px-6 py-2 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
+                >
+                  Profil
+                </a>
+              {% endif %}
               </div>
             </div>
           </div>
@@ -470,8 +488,8 @@
 
     <!-- ====== All Scripts -->
 
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script>
       // ==== for menu scroll
 {#       const pageLink = document.querySelectorAll(".ud-menu-scroll");

@@ -21,7 +21,6 @@
   <!-- ====== Banner Section End -->
 
   <!-- ====== Forms Section Start -->
-  <!-- ====== Forms Section Start -->
   <section class="bg-[#F4F7FF] py-14 lg:py-20 dark:bg-dark">
     <div class="container">
       <div class="flex flex-wrap -mx-4">
@@ -30,9 +29,9 @@
             class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white dark:bg-dark-2 py-14 px-8 text-center sm:px-12 md:px-[60px]"
             data-wow-delay=".15s">
 
-            <form>
+            <form  action="{{ path('generate_pdf_from_url') }}" method="POST">
               <div class="mb-[22px]">
-                <input type="text" placeholder="URL"
+                <input type="text" placeholder="URL"  name="url"
                   class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
               </div>
               <div class="mb-9">
@@ -104,6 +103,5 @@
       </div>
     </div>
   </section>
-  <!-- ====== Forms Section End -->
   <!-- ====== Forms Section End -->
 {% endblock %}
