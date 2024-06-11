@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Service\PdfService;
+use App\Entity\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PdfController extends AbstractController
 {
@@ -46,7 +48,7 @@ class PdfController extends AbstractController
     }
 
     #[Route('/generated-pdf', name: 'generate_pdf_from_url', methods: ['POST'])]
-    public function generatePdfFromUrl(Request $request): Response
+    public function generatePdfFromUrl(Request $request, EntityManagerInterface $manager): Response
     {
         $url = $request->request->get('url');
 
@@ -61,6 +63,13 @@ class PdfController extends AbstractController
             $pdfFilename = 'pdf-' . time() . '.pdf';
             $pdfPath = $this->getParameter('kernel.project_dir') . '/public/uploads/pdf/' . $pdfFilename;
             file_put_contents($pdfPath, $pdfContent);
+
+            $pdf = new Pdf();
+            $pdf->setUser($this->getUser());
+            $pdf->setTitle($pdfFilename);
+            $pdf->setCreatedAt(new \DateTimeImmutable());
+            $manager->persist($pdf);
+            $manager->flush();
 
             // Redirect to preview page
             return $this->redirectToRoute('preview_pdf', [
