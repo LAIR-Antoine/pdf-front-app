@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}PDF{% endblock %}
 
 {% block content %}
-  <!-- ====== Banner Section Start -->
+<!-- ====== Banner Section Start -->
   <div class="relative overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]">
     <div
       class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0">
@@ -12,8 +12,7 @@
       <div class="flex flex-wrap items-center -mx-4">
         <div class="w-full px-4">
           <div class="text-center">
-            <h1 class="mb-6 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]">
-              Créer un compte</h1>
+            <h1 class="mb-6 font-bold leading-snug text-white sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]">Générer un PDF</h1>
           </div>
         </div>
       </div>
@@ -22,38 +21,25 @@
   <!-- ====== Banner Section End -->
 
   <!-- ====== Forms Section Start -->
-  <section class="bg-[#F4F7FF] py-14 lg:py-[90px] dark:bg-dark">
+  <!-- ====== Forms Section Start -->
+  <section class="bg-[#F4F7FF] py-14 lg:py-20 dark:bg-dark">
     <div class="container">
       <div class="flex flex-wrap -mx-4">
         <div class="w-full px-4">
           <div
-            class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-xl shadow-form bg-white dark:bg-dark-2 py-14 px-8 text-center sm:px-12 md:px-[60px]"
+            class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white dark:bg-dark-2 py-14 px-8 text-center sm:px-12 md:px-[60px]"
             data-wow-delay=".15s">
+
             <form>
               <div class="mb-[22px]">
-                <input type="text" placeholder="Nom"
-                  class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
-              </div>
-              <div class="mb-[22px]">
-                <input type="email" placeholder="Email"
-                  class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
-              </div>
-              <div class="mb-[22px]">
-                <input type="password" placeholder="Mot de passe"
+                <input type="text" placeholder="URL"
                   class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none" />
               </div>
               <div class="mb-9">
-                <input type="submit" value="S'inscrire"
+                <input type="submit" value="Générer le PDF"
                   class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:bg-blue-dark" />
               </div>
             </form>
-
-            <p class="text-base text-body-secondary">
-              Vous avez déjà un compte ?
-              <a href="/signin" class="text-primary hover:underline">
-                Se connecter
-              </a>
-            </p>
 
             <div>
               <span class="absolute top-1 right-1">
@@ -118,5 +104,6 @@
       </div>
     </div>
   </section>
+  <!-- ====== Forms Section End -->
   <!-- ====== Forms Section End -->
 {% endblock %}

@@ -60,6 +60,14 @@
                 <ul class="blcok lg:flex 2xl:ml-20 ">
                   <li class="group relative">
                     <a
+                      href="/"
+                      class="ud-menu-scroll mx-8 flex py-2 text-base font-medium text-dark group-hover:text-primary dark:text-white lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-10"
+                    >
+                      Accueil
+                    </a>
+                  </li>
+                  <li class="group relative">
+                    <a
                       href="/generate-pdf"
                       class="ud-menu-scroll mx-8 flex py-2 text-base font-medium text-dark group-hover:text-primary dark:text-white lg:ml-7 lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-10"
                     >
@@ -466,7 +474,7 @@
     <script src="assets/js/main.js"></script>
     <script>
       // ==== for menu scroll
-      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+{#       const pageLink = document.querySelectorAll(".ud-menu-scroll");
 
       pageLink.forEach((elem) => {
         elem.addEventListener("click", (e) => {
@@ -476,7 +484,7 @@
             offsetTop: 1 - 60,
           });
         });
-      });
+      }); #}
 
       // section menu active
       function onScroll(event) {

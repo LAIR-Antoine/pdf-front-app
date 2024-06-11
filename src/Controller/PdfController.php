@@ -31,4 +31,12 @@ class PdfController extends AbstractController
             return new Response('Error: ' . $e->getMessage(), 500);
         }
     }
+
+    #[Route('/generate-pdf', name: 'generate_pdf', methods: ['GET', 'POST'])]
+    public function generate(): Response
+    {
+        return $this->render('pdf/generate.html.twig', [
+            'controller_name' => 'PdfController',
+        ]);
+    }
 }
