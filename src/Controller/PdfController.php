@@ -6,7 +6,8 @@ use App\Service\PdfService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class PdfController extends AbstractController
 {
@@ -39,4 +40,48 @@ class PdfController extends AbstractController
             'controller_name' => 'PdfController',
         ]);
     }
+
+    #[Route('/generated-pdf', name: 'generate_pdf_from_url', methods: ['POST'])]
+    public function generatePdfFromUrl(Request $request): Response
+    {
+        $url = $request->request->get('url');
+
+        try {
+            $pdfContent = $this->pdfService->generatePdf($url);
+
+            // Save PDF to uploads/pdf directory
+            $pdfFilename = 'pdf-' . time() . '.pdf';
+            $pdfPath = $this->getParameter('kernel.project_dir') . '/public/uploads/pdf/' . $pdfFilename;
+            file_put_contents($pdfPath, $pdfContent);
+
+            // Redirect to preview page
+            return $this->redirectToRoute('preview_pdf', [
+                'pdfFilename' => $pdfFilename
+            ]);
+
+        } catch (\Exception $e) {
+            return new Response('Error: ' . $e->getMessage(), 500);
+        }
+    }
+
+    #[Route('/preview-pdf/{pdfFilename}', name: 'preview_pdf', methods: ['GET'])]
+    public function previewPdf(string $pdfFilename): Response
+    {
+        $pdfPath = 'uploads/pdf/' . $pdfFilename;
+
+        return $this->render('pdf/preview.html.twig', [
+            'pdfFilename' => $pdfFilename,
+            'pdfPath' => $pdfPath,
+            'controller_name' => 'PdfController',
+        ]);
+    }
+
+    #[Route('/download-pdf/{pdfFilename}', name: 'download_pdf', methods: ['GET'])]
+    public function downloadPdf(string $pdfFilename): Response
+    {
+        $pdfPath = $this->getParameter('kernel.project_dir') . '/public/uploads/pdf/' . $pdfFilename;
+
+        return $this->file($pdfPath, $pdfFilename, ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+    }
+
 }
