@@ -46,6 +46,10 @@ class PdfController extends AbstractController
     {
         $url = $request->request->get('url');
 
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         try {
             $pdfContent = $this->pdfService->generatePdf($url);
 
@@ -69,6 +73,10 @@ class PdfController extends AbstractController
     {
         $pdfPath = 'uploads/pdf/' . $pdfFilename;
 
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('pdf/preview.html.twig', [
             'pdfFilename' => $pdfFilename,
             'pdfPath' => $pdfPath,
@@ -81,6 +89,10 @@ class PdfController extends AbstractController
     {
         $pdfPath = $this->getParameter('kernel.project_dir') . '/public/uploads/pdf/' . $pdfFilename;
 
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         return $this->file($pdfPath, $pdfFilename, ResponseHeaderBag::DISPOSITION_ATTACHMENT);
     }
 
