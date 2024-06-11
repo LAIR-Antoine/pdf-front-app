@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class PdfController extends AbstractController
 {
@@ -54,7 +55,41 @@ class PdfController extends AbstractController
 
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
+        } else {
+            $user = $this->getUser();
+    
+            if (!$user->getSubscription()) {
+                $this->addFlash('error', 'Vous devez avoir un abonnement pour générer des PDFs.');
+                return $this->redirectToRoute('app_price');
+            }
+    
+            if ($user->getSubscriptionEndAt() < new \DateTimeImmutable()) {
+                $this->addFlash('error', 'Votre abonnement a expiré.');
+                return $this->redirectToRoute('app_price');
+            }
+    
+            $subscription = $user->getSubscription();
+            $pdfs = $manager->getRepository(Pdf::class)->findBy(['user' => $user]);
+    
+            // Check if user has reached the PDF limit for the day
+            $today = new \DateTimeImmutable('today midnight');
+            $pdfCountToday = $manager->createQueryBuilder()
+                ->select('count(pdf.id)')
+                ->from(Pdf::class, 'pdf')
+                ->where('pdf.user = :user')
+                ->andWhere('pdf.created_at > :today')
+                ->setParameter('user', $user)
+                ->setParameter('today', $today)
+                ->getQuery()
+                ->getSingleScalarResult();
+
+            if ($subscription->getPdfLimit() <= $pdfCountToday) {
+                $this->addFlash('error', 'Vous avez atteint la limite des PDFs générés aujourd\'hui.');
+                return $this->redirectToRoute('app_price');
+            }
         }
+
+
 
         try {
             $pdfContent = $this->pdfService->generatePdf($url);
