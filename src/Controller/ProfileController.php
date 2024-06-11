@@ -11,8 +11,10 @@ class ProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function index(): Response
     {
-
-        // get the current user
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+        
         $user = $this->getUser();
 
 
