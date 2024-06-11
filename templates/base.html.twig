@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | Générateur de PDF</title>
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
 
     <link
@@ -57,15 +57,7 @@
                 id="navbarCollapse"
                 class="absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:px-4 lg:py-0 lg:shadow-none dark:lg:bg-transparent xl:px-6"
               >
-                <ul class="blcok lg:flex 2xl:ml-20">
-                  <li class="group relative">
-                    <a
-                      href="/"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base font-medium text-dark group-hover:text-primary dark:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70"
-                    >
-                      Accueil
-                    </a>
-                  </li>
+                <ul class="blcok lg:flex 2xl:ml-20 ">
                   <li class="group relative">
                     <a
                       href="/generate-pdf"
