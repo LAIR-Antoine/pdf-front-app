@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^4.6.1"
+  },
+  "scripts": {
+    "dev": "encore dev",
+    "build": "encore production"
+  }
+}
