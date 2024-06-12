@@ -40,7 +40,7 @@
                                 <p class="text-lg">{{ subscription.title }} | {{ subscription.price }} €</p>
                                 <p class="text-lg">{{ subscription.description }}</p>
                                 <br>
-                                <a href={{ path('app_change_offer', { 'offer_id': 0 }) }}
+                                <a href={{ path('app_change_offer', { 'offer_id': 0 }) }} id="cancel-subscription"
                                   class="inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
                                   Annuler l'abonnement
                                 </a>
@@ -60,7 +60,7 @@
                               {% for pdf in pdfs %}
                                 <li>
                                   <p> 
-                                    <a href={{ path('preview_pdf', { 'pdfFilename': pdf.title }) }} class="inline-block py-3 text-lg font-medium text-center text-primary">{{ pdf.title }} </a>
+                                    <a href={{ path('preview_pdf', { 'pdfFilename': pdf.title }) }} class="old-pdf inline-block py-3 text-lg font-medium text-center text-primary">{{ pdf.title }} </a>
                                     <span class="text-sm"> ({{ pdf.createdAt|date('d/m/Y H:m') }})</span>
                                   </p>
                                 </li>

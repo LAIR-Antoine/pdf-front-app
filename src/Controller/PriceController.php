@@ -16,7 +16,10 @@ class PriceController extends AbstractController
     public function index(): Response
     {
         $user = $this->getUser();
-        $subscription = $user->getSubscription();
+        $subscription = null;
+        if ($user) {
+            $subscription = $user->getSubscription();
+        }
 
         if (!$subscription) {
             $subscriptionId = 0;
