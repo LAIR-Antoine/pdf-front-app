@@ -75,8 +75,8 @@
               </div>
             </div>
             {% if subscription != 1 %}
-              <a href={{ path('app_change_offer', { 'offer_id': 1 }) }}
-                class="inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
+              <a href={{ path('app_change_offer', { 'offer_id': 1 }) }} id="offer1"
+                class="offer inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
                 Acheter maintenant
               </a>
             {% else %}
@@ -124,8 +124,8 @@
               </div>
             </div>
             {% if subscription != 2 %}
-              <a href={{ path('app_change_offer', { 'offer_id': 2 }) }}
-                class="inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
+              <a href={{ path('app_change_offer', { 'offer_id': 2 }) }} id="offer2"
+                class="offer inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
                 Acheter maintenant
               </a>
             {% else %}
@@ -169,8 +169,8 @@
               </div>
             </div>
             {% if subscription != 3 %}
-              <a href={{ path('app_change_offer', { 'offer_id': 3 }) }}
-                class="inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
+              <a href={{ path('app_change_offer', { 'offer_id': 3 }) }} id="offer3"
+                class="offer inline-block py-3 text-base font-medium text-center text-white transition rounded-md bg-primary px-7 hover:bg-blue-dark">
                 Acheter maintenant
               </a>
             {% else %}
