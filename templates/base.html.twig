@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | Générateur de PDF</title>
-    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
 
     <link
       rel="shortcut icon"
@@ -209,11 +208,6 @@
 
 
       <div>
-
-
-        <span class="absolute bottom-0 right-0 z-[-1]">
-          <img src="    footer/shape-3.svg" alt="" />
-        </span>
 
         <span class="absolute right-0 top-0 z-[-1]">
           <svg
@@ -506,6 +500,7 @@
 
       // section menu active
       function onScroll(event) {
+        return;
         const sections = document.querySelectorAll(".ud-menu-scroll");
         const scrollPos =
           window.pageYOffset ||
